@@ -1,0 +1,13 @@
+.tabBtn {
+    background-color: white;
+    color: black;
+    width: 15em;
+    height: 4em;
+    font-size: 1em;
+    text-align: left;
+    border-color: black;
+    border-style: solid;
+    border-left: none;
+    border-top: none;
+    border-radius: 5px;
+}
