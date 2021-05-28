@@ -6,7 +6,15 @@ function App() {
   return (
     <div className='container'>
       <Header />
-      <Tabs />
+      <div>
+        <div className="row">
+          <div className="col-left">
+            <Tabs />
+          </div>
+          <div className="col-right"></div>
+        </div>
+      </div>
+      
     </div>
   );
 }
