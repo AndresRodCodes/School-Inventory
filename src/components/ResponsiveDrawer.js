@@ -6,16 +6,20 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import DevicesIcon from '@material-ui/icons/Devices';
+import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import AddToQueueIcon from '@material-ui/icons/AddToQueue';
+import Button from '@material-ui/core/Button';
 
 const drawerWidth = 240;
 
@@ -40,6 +44,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
+  },
+
+  title: {
+    flexGrow: 1,
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -67,18 +75,13 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {['Veiw Inventory', 'Check-out Device', 'Check-in Device', 'Add Person', 'Add Devices'].map((text, index) => (
+        {[['View Inventory', <DevicesIcon />], 
+        ['Check-out Device', <QueuePlayNextIcon />], 
+        ['Check-in Device', <ListAltIcon />], 
+        ['Add Person', <PersonAddIcon />], 
+        ['Add Devices', <AddToQueueIcon />]].map(([text, icon], index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemIcon>{icon}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -102,9 +105,10 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Responsive drawer
+          <Typography variant="h6" noWrap className={classes.title}>
+            Dana MS Inventory
           </Typography>
+            <Button variant="contained" color="secondary">Sign out</Button>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
