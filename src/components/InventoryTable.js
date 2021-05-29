@@ -21,13 +21,17 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-function createData(name, calories, fat, carbs, protein, room) {
-  return { name, calories, fat, carbs, protein, room };
-}
+const inventoryData = [
+  {name: 'Laptop', manufacture: 'HP', model: 'Omen 14', assetTag: 'LAUSDAJ8394857', checkedOutTo: 'Andres Rodriguez', room: 106},
+  {name: 'iPad', manufacture: 'Apple', model: 'Omen 14', assetTag: 'LAUSDAJ8394851', checkedOutTo: 'Andres Rodriguez', room: 106},
+  {name: 'Chromebook', manufacture: 'Dell', model: 'Omen 14', assetTag: 'LAUSDAJ8394852', checkedOutTo: 'Andres Rodriguez', room: 106},
+  {name: 'Desktop', manufacture: 'Lenovo', model: 'Omen 14', assetTag: 'LAUSDAJ8394853', checkedOutTo: 'Andres Rodriguez', room: 106},
+  {name: 'Projector', manufacture: 'Epson', model: 'Omen 14', assetTag: 'LAUSDAJ8394854', checkedOutTo: 'Andres Rodriguez', room: 106},
+  {name: 'Document Camera', manufacture: 'Elmo', model: 'Omen 14', assetTag: 'LAUSDAJ8394855', checkedOutTo: 'Andres Rodriguez', room: 106},
+  {name: 'Hot Spot', manufacture: 'Elmo', model: 'Omen 14', assetTag: 'LAUSDAJ8394855', checkedOutTo: 'Andres Rodriguez', room: 106},
+]
 
-const rows = [
-  createData('Laptop', 'HP', 'Omen 14', 'LAUSDAJ8394857', 'Andres Rodriguez', 106),
-];
+const rows = inventoryData;
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -57,10 +61,10 @@ function stableSort(array, comparator) {
 
 const headCells = [
   { id: 'name', numeric: false, disablePadding: true, label: 'Device Type' },
-  { id: 'calories', numeric: false, disablePadding: false, label: 'Manufacture' },
-  { id: 'fat', numeric: false, disablePadding: false, label: 'Model' },
-  { id: 'carbs', numeric: false, disablePadding: false, label: 'Asset Tag' },
-  { id: 'protein', numeric: false, disablePadding: false, label: 'Checked Out To' },
+  { id: 'manufacture', numeric: false, disablePadding: false, label: 'Manufacture' },
+  { id: 'model', numeric: false, disablePadding: false, label: 'Model' },
+  { id: 'assetTag', numeric: false, disablePadding: false, label: 'Asset Tag' },
+  { id: 'checkedOutTo', numeric: false, disablePadding: false, label: 'Checked Out To' },
   { id: 'room', numeric: true, disablePadding: false, label: 'Room' },
 ];
 
@@ -205,7 +209,7 @@ const useStyles = makeStyles((theme) => ({
 export default function InventoryTable() {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [orderBy, setOrderBy] = React.useState('manufacture');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -309,10 +313,10 @@ export default function InventoryTable() {
                       <TableCell component="th" id={labelId} scope="row" padding="none">
                         {row.name}
                       </TableCell>
-                      <TableCell align="left">{row.calories}</TableCell>
-                      <TableCell align="left">{row.fat}</TableCell>
-                      <TableCell align="left">{row.carbs}</TableCell>
-                      <TableCell align="left">{row.protein}</TableCell>
+                      <TableCell align="left">{row.manufacture}</TableCell>
+                      <TableCell align="left">{row.model}</TableCell>
+                      <TableCell align="left">{row.assetTag}</TableCell>
+                      <TableCell align="left">{row.checkedOutTo}</TableCell>
                       <TableCell align="right">{row.room}</TableCell>
                     </TableRow>
                   );
