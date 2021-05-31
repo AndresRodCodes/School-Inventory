@@ -17,13 +17,13 @@ import EnhancedTableToolbar from './InventoryTableToolbar';
 
 
 const inventoryData = [
-  {name: 'Laptop', manufacture: 'HP', model: 'Omen 14', assetTag: 'LAUSDAJ8394857', checkedOutTo: 'Andres Rodriguez', room: 106},
-  {name: 'iPad', manufacture: 'Apple', model: 'Omen 14', assetTag: 'LAUSDAJ8394851', checkedOutTo: 'Andres Rodriguez', room: 106},
-  {name: 'Chromebook', manufacture: 'Dell', model: 'Omen 14', assetTag: 'LAUSDAJ8394852', checkedOutTo: 'Andres Rodriguez', room: 106},
-  {name: 'Desktop', manufacture: 'Lenovo', model: 'Omen 14', assetTag: 'LAUSDAJ8394853', checkedOutTo: 'Andres Rodriguez', room: 106},
-  {name: 'Projector', manufacture: 'Epson', model: 'Omen 14', assetTag: 'LAUSDAJ8394854', checkedOutTo: 'Andres Rodriguez', room: 106},
-  {name: 'Document Camera', manufacture: 'Elmo', model: 'Omen 14', assetTag: 'LAUSDAJ8394855', checkedOutTo: 'Andres Rodriguez', room: 106},
-  {name: 'Hot Spot', manufacture: 'Elmo', model: 'Omen 14', assetTag: 'LAUSDAJ8394855', checkedOutTo: 'Andres Rodriguez', room: 106},
+  {deviceType: 'Laptop', manufacture: 'HP', model: 'Omen 14', assetTag: 'LAUSDAJ8394857', checkedOutTo: 'Andres Rodriguez', room: 106},
+  {deviceType: 'iPad', manufacture: 'Apple', model: 'Omen 14', assetTag: 'LAUSDAJ8394851', checkedOutTo: 'Andres Rodriguez', room: 106},
+  {deviceType: 'Chromebook', manufacture: 'Dell', model: 'Omen 14', assetTag: 'LAUSDAJ8394852', checkedOutTo: 'Andres Rodriguez', room: 106},
+  {deviceType: 'Desktop', manufacture: 'Lenovo', model: 'Omen 14', assetTag: 'LAUSDAJ8394853', checkedOutTo: 'Andres Rodriguez', room: 106},
+  {deviceType: 'Projector', manufacture: 'Epson', model: 'Omen 14', assetTag: 'LAUSDAJ8394854', checkedOutTo: 'Andres Rodriguez', room: 106},
+  {deviceType: 'Document Camera', manufacture: 'Elmo', model: 'Omen 14', assetTag: 'LAUSDAJ8394855', checkedOutTo: 'Andres Rodriguez', room: 106},
+  {deviceType: 'Hot Spot', manufacture: 'Elmo', model: 'Omen 14', assetTag: 'LAUSDAJ8394855', checkedOutTo: 'Andres Rodriguez', room: 106},
 ]
 
 const rows = inventoryData;
@@ -55,7 +55,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Device Type' },
+  { id: 'deviceType', numeric: false, disablePadding: true, label: 'Device Type' },
   { id: 'manufacture', numeric: false, disablePadding: false, label: 'Manufacture' },
   { id: 'model', numeric: false, disablePadding: false, label: 'Model' },
   { id: 'assetTag', numeric: false, disablePadding: false, label: 'Asset Tag' },
@@ -157,19 +157,19 @@ export default function InventoryTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
+      const newSelecteds = rows.map((n) => n.deviceType);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event, deviceType) => {
+    const selectedIndex = selected.indexOf(deviceType);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, deviceType);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -197,7 +197,7 @@ export default function InventoryTable() {
     setDense(event.target.checked);
   };
 
-  const isSelected = (name) => selected.indexOf(name) !== -1;
+  const isSelected = (deviceType) => selected.indexOf(deviceType) !== -1;
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
@@ -225,17 +225,17 @@ export default function InventoryTable() {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.deviceType);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.deviceType)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.deviceType}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -245,7 +245,7 @@ export default function InventoryTable() {
                         />
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.name}
+                        {row.deviceType}
                       </TableCell>
                       <TableCell align="left">{row.manufacture}</TableCell>
                       <TableCell align="left">{row.model}</TableCell>
