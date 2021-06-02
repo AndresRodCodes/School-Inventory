@@ -8,6 +8,7 @@ import { lighten, makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React from 'react';
 import PropTypes from 'prop-types';
+import InventoryTableSearch from './InventoryTableSearch';
 
 const useToolbarStyles = makeStyles((theme) => ({
     root: {
@@ -43,7 +44,7 @@ const EnhancedTableToolbar = ({ numSelected }) => {
             {numSelected} selected
           </Typography>
         ) : (
-          <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
+            <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
             Device Inventory
           </Typography>
         )}
@@ -55,11 +56,15 @@ const EnhancedTableToolbar = ({ numSelected }) => {
             </IconButton>
           </Tooltip>
         ) : (
-          <Tooltip title="Filter list">
+          <div>
+            <InventoryTableSearch />
+            <Tooltip title="Filter list">
             <IconButton aria-label="filter list">
               <FilterListIcon />
             </IconButton>
           </Tooltip>
+          </div>
+          
         )}
       </Toolbar>
     );
