@@ -44,7 +44,11 @@ const AppBarComp = ({ handleDrawerToggle }) => {
           <Typography variant="h6" noWrap className={classes.title}>
             Dana MS Inventory
           </Typography>
-            <Button variant="contained" color="secondary">Sign out</Button>
+            <Button 
+              onClick={() => alert('You have been signed out')} 
+              variant="contained" 
+              color="secondary">Sign out
+            </Button>
         </Toolbar>
       </AppBar>
     )
