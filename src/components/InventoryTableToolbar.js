@@ -36,7 +36,7 @@ const EnhancedTableToolbar = ({ numSelected }) => {
           [classes.highlight]: numSelected > 0,
         })}
       >
-        <Grid container className={classes.root} direction='row' justify='space-between' spacing={3}>
+        <Grid container className={classes.root} direction='row' justify='space-between' spacing={3} alignItems='flex-end'>
           <Grid item xs={4}>
             {numSelected > 0 ? (
             <Typography color="inherit" variant="subtitle1" component="div">
