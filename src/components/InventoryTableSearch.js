@@ -18,6 +18,7 @@ const InventoryTableSearch = () => {
                             id='search-label'
                             value={tableLabel}
                             onChange={handleChange}
+                            fullWidth
                             >
                             <MenuItem value='deviceType'>Device Type</MenuItem>
                             <MenuItem value='manufacture'>Manufacture</MenuItem>

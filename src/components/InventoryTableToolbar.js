@@ -25,9 +25,6 @@ const useToolbarStyles = makeStyles((theme) => ({
             color: theme.palette.text.primary,
             backgroundColor: theme.palette.secondary.dark,
           },
-    title: {
-      flex: '1 1 100%',
-    },
   }));
 
 const EnhancedTableToolbar = ({ numSelected }) => {
@@ -39,14 +36,14 @@ const EnhancedTableToolbar = ({ numSelected }) => {
           [classes.highlight]: numSelected > 0,
         })}
       >
-        <Grid container className={classes.root} direction='row' justify='space-between' spacing={1}>
+        <Grid container className={classes.root} direction='row' justify='space-between' spacing={3}>
           <Grid item xs={4}>
             {numSelected > 0 ? (
-            <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
+            <Typography color="inherit" variant="subtitle1" component="div">
               {numSelected} selected
             </Typography>
           ) : (
-              <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
+              <Typography variant="h6" id="tableTitle" component="div">
               Device Inventory
             </Typography>
           )}
