@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -14,67 +14,6 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import EnhancedTableToolbar from "./InventoryTableToolbar";
-
-const inventoryData = [
-  {
-    deviceType: "Laptop",
-    manufacture: "HP",
-    model: "Omen 14",
-    assetTag: "LAUSDAJ8394857",
-    checkedOutTo: "Andres Rodriguez",
-    room: 106,
-  },
-  {
-    deviceType: "iPad",
-    manufacture: "Apple",
-    model: "Omen 14",
-    assetTag: "LAUSDAJ8394851",
-    checkedOutTo: "Andres Rodriguez",
-    room: 106,
-  },
-  {
-    deviceType: "Chromebook",
-    manufacture: "Dell",
-    model: "Omen 14",
-    assetTag: "LAUSDAJ8394852",
-    checkedOutTo: "Andres Rodriguez",
-    room: 106,
-  },
-  {
-    deviceType: "Desktop",
-    manufacture: "Lenovo",
-    model: "Omen 14",
-    assetTag: "LAUSDAJ8394853",
-    checkedOutTo: "Andres Rodriguez",
-    room: 106,
-  },
-  {
-    deviceType: "Projector",
-    manufacture: "Epson",
-    model: "Omen 14",
-    assetTag: "LAUSDAJ8394854",
-    checkedOutTo: "Andres Rodriguez",
-    room: 106,
-  },
-  {
-    deviceType: "Document Camera",
-    manufacture: "Elmo",
-    model: "Omen 14",
-    assetTag: "LAUSDAJ8394855",
-    checkedOutTo: "Andres Rodriguez",
-    room: 106,
-  },
-  {
-    deviceType: "Hot Spot",
-    manufacture: "Elmo",
-    model: "Omen 14",
-    assetTag: "LAUSDAJ8394855",
-    checkedOutTo: "Andres Rodriguez",
-    room: 106,
-  },
-];
-
-const rows = inventoryData;
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -212,6 +151,67 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function InventoryTable() {
+  const [inventoryData, setInventoryData] = useState([
+    {
+      deviceType: "Laptop",
+      manufacture: "HP",
+      model: "Omen 14",
+      assetTag: "LAUSDAJ8394857",
+      checkedOutTo: "Andres Rodriguez",
+      room: 106,
+    },
+    {
+      deviceType: "iPad",
+      manufacture: "Apple",
+      model: "Omen 14",
+      assetTag: "LAUSDAJ8394851",
+      checkedOutTo: "Andres Rodriguez",
+      room: 106,
+    },
+    {
+      deviceType: "Chromebook",
+      manufacture: "Dell",
+      model: "Omen 14",
+      assetTag: "LAUSDAJ8394852",
+      checkedOutTo: "Andres Rodriguez",
+      room: 106,
+    },
+    {
+      deviceType: "Desktop",
+      manufacture: "Lenovo",
+      model: "Omen 14",
+      assetTag: "LAUSDAJ8394853",
+      checkedOutTo: "Andres Rodriguez",
+      room: 106,
+    },
+    {
+      deviceType: "Projector",
+      manufacture: "Epson",
+      model: "Omen 14",
+      assetTag: "LAUSDAJ8394854",
+      checkedOutTo: "Andres Rodriguez",
+      room: 106,
+    },
+    {
+      deviceType: "Document Camera",
+      manufacture: "Elmo",
+      model: "Omen 14",
+      assetTag: "LAUSDAJ8394855",
+      checkedOutTo: "Andres Rodriguez",
+      room: 106,
+    },
+    {
+      deviceType: "Hot Spot",
+      manufacture: "Elmo",
+      model: "Omen 14",
+      assetTag: "LAUSDAJ8394855",
+      checkedOutTo: "Andres Rodriguez",
+      room: 106,
+    },
+  ]);
+
+  const rows = inventoryData;
+
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("manufacture");

@@ -9,7 +9,7 @@ import FormControl from "@material-ui/core/FormControl";
 import React from "react";
 
 const InventoryTableSearch = () => {
-  const [tableLabel, setTableLabel] = React.useState("");
+  const [tableLabel, setTableLabel] = React.useState("assetTag");
   const handleChange = (event) => {
     setTableLabel(event.target.value);
   };
